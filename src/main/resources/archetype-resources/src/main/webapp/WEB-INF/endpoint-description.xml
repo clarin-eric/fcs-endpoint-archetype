@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EndpointDescription xmlns="http://clarin.eu/fcs/endpoint-description"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://clarin.eu/fcs/endpoint-description ../../resources/Endpoint-Description.xsd"
+    version="2">
+    <Capabilities>
+        <Capability>http://clarin.eu/fcs/capability/basic-search</Capability>
+        <!-- <Capability>http://clarin.eu/fcs/capability/advanced-search</Capability> -->
+    </Capabilities>
+    <SupportedDataViews>
+        <SupportedDataView id="hits" delivery-policy="send-by-default">application/x-clarin-fcs-hits+xml</SupportedDataView>
+    </SupportedDataViews>
+    <Resources>
+        <Resource pid="FIXME:DEFAULT_RESOURCE_PID">
+            <Title xml:lang="en">${institutionName}</Title>
+            <Description xml:lang="en">${institutionName} Resource</Description>
+            <LandingPageURI>https://FIXME</LandingPageURI>
+            <Languages>
+                <Language>eng</Language>
+            </Languages>
+            <AvailableDataViews ref="hits" />
+        </Resource>
+    </Resources>
+</EndpointDescription>

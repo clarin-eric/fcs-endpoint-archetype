@@ -1,0 +1,80 @@
+<archetype-descriptor
+    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 https://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+    name="fcs-endpoint-archetype">
+
+    <requiredProperties>
+        <requiredProperty key="institutionName" />
+
+        <requiredProperty key="package">
+            <defaultValue>${groupId.replace("-", "_")}.${artifactId.replace("-", "_")}</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="artifactIdCamelCase">
+            <defaultValue>${artifactId.replaceAll("^a|-a", "A").replaceAll("^b|-b",
+                "B").replaceAll("^c|-c", "C").replaceAll("^d|-d", "D").replaceAll("^e|-e",
+                "E").replaceAll("^f|-f", "F").replaceAll("^g|-g", "G").replaceAll("^h|-h",
+                "H").replaceAll("^i|-i", "I").replaceAll("^j|-j", "J").replaceAll("^k|-k",
+                "K").replaceAll("^l|-l", "L").replaceAll("^m|-m", "M").replaceAll("^n|-n",
+                "N").replaceAll("^o|-o", "O").replaceAll("^p|-p", "P").replaceAll("^q|-q",
+                "Q").replaceAll("^r|-r", "R").replaceAll("^s|-s", "S").replaceAll("^t|-t",
+                "T").replaceAll("^u|-u", "U").replaceAll("^v|-v", "V").replaceAll("^w|-w",
+                "W").replaceAll("^x|-x", "X").replaceAll("^y|-y", "Y").replaceAll("^z|-z", "Z")}</defaultValue>
+        </requiredProperty>
+
+        <requiredProperty key="classnamePrefix">
+            <defaultValue>${artifactIdCamelCase.substring(0,
+                1).toUpperCase()}${artifactIdCamelCase.substring(1)}</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classnameEndpointSearchEngine">
+            <defaultValue>${classnamePrefix}EndpointSearchEngine</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classnameSRUSearchResultSet">
+            <defaultValue>${classnamePrefix}SRUSearchResultSet</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classnameConstants">
+            <defaultValue>${classnamePrefix}Constants</defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+
+    <fileSets>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/main/java</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/webapp</directory>
+        </fileSet>
+
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>log4j2.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" packaged="false">
+            <directory>src/main/resources</directory>
+            <excludes>
+                <exclude>log4j2.xml</exclude>
+            </excludes>
+        </fileSet>
+
+        <fileSet filtered="true" packaged="false">
+            <directory />
+            <includes>
+                <include>Dockerfile</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" packaged="false">
+            <directory />
+            <includes>
+                <include>docker-compose.yml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory />
+            <includes>
+                <include>README.md</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>

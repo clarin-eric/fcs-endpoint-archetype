@@ -1,0 +1,9 @@
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "https://www.eclipse.org/jetty/configure_10_0.dtd">
+<Configure id="wac" class="org.eclipse.jetty.webapp.WebAppContext">
+    <New class="org.eclipse.jetty.plus.jndi.EnvEntry">
+        <Arg>param/DEFAULT_RESOURCE_PID</Arg>
+        <Arg type="java.lang.String"><Env name="DEFAULT_RESOURCE_PID"
+                default="FIXME:DEFAULT_RESOURCE_PID" /></Arg>
+        <Arg type="boolean">true</Arg>
+    </New>
+</Configure>

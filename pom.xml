@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>eu.clarin.sru.fcs</groupId>
+    <artifactId>fcs-endpoint-archetype</artifactId>
+    <version>1.6.0-SNAPSHOT</version>
+    <packaging>maven-archetype</packaging>
+
+    <name>A basic CLARIN FCS endpoint archetype</name>
+    <description>
+        A basic CLARIN FCS endpoint archetype to to ease the development of own CLARIN FCS endpoints.
+    </description>
+    <organization>
+        <name>Sächsische Akademie der Wissenschaften zu Leipzig</name>
+        <url>https://www.saw-leipzig.de/</url>
+    </organization>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>3.2.1</version>
+            </extension>
+        </extensions>
+    </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>CLARIN-Snapshot</id>
+            <url>https://nexus.clarin.eu/content/repositories/clarin-snapshot</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>CLARIN</id>
+            <url>https://nexus.clarin.eu/content/repositories/Clarin</url>
+        </repository>
+    </distributionManagement>
+</project>
