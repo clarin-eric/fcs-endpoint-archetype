@@ -61,6 +61,8 @@ mvn archetype:generate \
 
 The values for `artifactIdCamelCase` and `package` are used internally and should be kept as is. The Parameter `classnamePrefix` will be used as prefix for the generated class names: `classnameEndpointSearchEngine`, `classnameSRUSearchResultSet` and `classnameConstants`.
 
+Note that depending on the [`<version>` in `pom.xml`](pom.xml) and how you installed the Maven repository you should use `-DarchetypeVersion=1.6.0` or `-DarchetypeVersion=1.6.0-SNAPSHOT`!
+
 ---
 
 ## Update Archetype and Test
