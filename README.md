@@ -22,6 +22,8 @@ With a custom repository, you need to update your local maven settings (can be f
   ...
   <profiles>
     <profile>
+      <!-- id for our custom profile (not active by default) -->
+      <id>clarin</id>
       ...
       <repositories>
         <repository>
@@ -30,6 +32,11 @@ With a custom repository, you need to update your local maven settings (can be f
         </repository>
         <repository>
           <id>CLARIN</id>
+          <url>https://nexus.clarin.eu/content/repositories/Clarin</url>
+        </repository>
+        <!-- add repository for archetypes -->
+        <repository>
+          <id>archetype</id>
           <url>https://nexus.clarin.eu/content/repositories/Clarin</url>
         </repository>
       </repositories>
@@ -50,6 +57,7 @@ Now that your Maven can find the archetype definition, you can start the project
 
 ```bash
 mvn archetype:generate \
+    -Pclarin \
     -DarchetypeGroupId=eu.clarin.sru.fcs \
     -DarchetypeArtifactId=fcs-endpoint-archetype \
     -DarchetypeVersion=1.6.0 \
@@ -60,6 +68,8 @@ mvn archetype:generate \
 ```
 
 The values for `artifactIdCamelCase` and `package` are used internally and should be kept as is. The Parameter `classnamePrefix` will be used as prefix for the generated class names: `classnameEndpointSearchEngine`, `classnameSRUSearchResultSet` and `classnameConstants`.
+
+We use `-Pclarin` to select our `clarin` profile where the archetype repository is defined (to force select our remote repository instead of `central`).
 
 Note that depending on the [`<version>` in `pom.xml`](pom.xml) and how you installed the Maven repository you should use `-DarchetypeVersion=1.6.0` or `-DarchetypeVersion=1.6.0-SNAPSHOT`!
 
