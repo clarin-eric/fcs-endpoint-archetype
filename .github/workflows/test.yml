@@ -1,0 +1,58 @@
+name: Test maven archetype project generation
+
+on: [ push ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  generate-endpoint-project:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version: [ '11', '17', '21' ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Java ${{ matrix.java-version }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'temurin'
+
+      - name: Info (java)
+        run: java --version
+        
+      - name: Info (maven)
+        run: mvn --version
+
+      - name: Install archetype
+        run: mvn --batch-mode clean install "archetype:update-local-catalog"
+
+      - name: Create endpoint project
+        env:
+          WORKPATH: work/${{ matrix.java-version }}/
+        run: |
+          mkdir -p "$WORKPATH"
+          cd "$WORKPATH"
+          mvn archetype:generate \
+            -DarchetypeGroupId=eu.clarin.sru.fcs \
+            -DarchetypeArtifactId=fcs-endpoint-archetype \
+            -DarchetypeVersion=1.6.0-SNAPSHOT \
+            -DarchetypeCatalog=local \
+            -DgroupId=eu.clarin.sru.fcs.my \
+            -DartifactId=test-endpoint \
+            -Dversion=1.0-SNAPSHOT \
+            -DinstitutionName="Test endpoint for Java ${{ matrix.java-version }}" \
+            --batch-mode --debug
+
+      - name: Build endpoint project
+        env:
+          WORKPATH: work/${{ matrix.java-version }}/test-endpoint/
+        run: |
+          cd "$WORKPATH"
+          mvn --batch-mode clean package
+          mvn -ntp dependency:tree -Ddetail=true
