@@ -63,16 +63,22 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
                 <configuration>
                     <release>11</release>
                 </configuration>
+            </plugin>
+            <!-- packaging (war) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
             </plugin>
             <!-- security check -->
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>8.3.1</version>
+                <version>11.0.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -85,7 +91,7 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>10.0.15</version>
+                <version>10.0.24</version>
             </plugin>
         </plugins>
     </build>
